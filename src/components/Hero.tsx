@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Download } from "lucide-react";
-import heroBackground from "@/assets/hero-bg.jpg";
+import SilkBackground from "@/components/SilkBackground";
 
 const Hero = () => {
   const profileImage = "https://media.licdn.com/dms/image/v2/D4D03AQFmOtmA_G-7Eg/profile-displayphoto-shrink_200_200/B4DZXxba3KHsAk-/0/1743512252344?e=2147483647&v=beta&t=EMAf8lHCWHgaVA7WYou62jB6uePcU8OaTgZy2nK2BQQ";
@@ -10,16 +10,8 @@ const Hero = () => {
   };
 
   return (
-    <section 
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
-      style={{
-        backgroundImage: `url(${heroBackground})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed'
-      }}
-    >
-      <div className="absolute inset-0 bg-background/80" />
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background">
+      <SilkBackground />
       
       <div className="container mx-auto px-6 text-center relative z-10">
         <div className="fade-in">
@@ -27,8 +19,8 @@ const Hero = () => {
             <img
               src={profileImage}
               alt="William Fernandes"
-              className="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto border-4 border-primary shadow-lg"
-              style={{ boxShadow: 'var(--glow)' }}
+              className="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto border-4 border-primary shadow-lg pulse-glow"
+              style={{ boxShadow: 'var(--obsidian-glow)' }}
             />
           </div>
           
@@ -64,7 +56,7 @@ const Hero = () => {
         </div>
       </div>
       
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
         <ArrowDown className="h-6 w-6 text-primary" />
       </div>
     </section>

@@ -56,14 +56,14 @@ const AnimatedBackground = () => {
         if (particle.y > canvas.height) particle.y = 0;
         if (particle.y < 0) particle.y = canvas.height;
 
-        // Draw particle
+        // Draw particle with Obsidian colors
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(192, 100%, 42%, ${particle.opacity})`; // Primary color
+        ctx.fillStyle = `hsla(260, 100%, 80%, ${particle.opacity})`; // Primary purple
         ctx.fill();
       });
 
-      // Draw connections
+      // Draw connections with purple theme
       particles.forEach((particle, i) => {
         particles.slice(i + 1).forEach((otherParticle) => {
           const dx = particle.x - otherParticle.x;
@@ -74,7 +74,7 @@ const AnimatedBackground = () => {
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(otherParticle.x, otherParticle.y);
-            ctx.strokeStyle = `hsla(192, 100%, 42%, ${0.1 * (1 - distance / 100)})`;
+            ctx.strokeStyle = `hsla(280, 100%, 70%, ${0.15 * (1 - distance / 100)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }

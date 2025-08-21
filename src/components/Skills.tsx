@@ -25,7 +25,7 @@ const Skills = () => {
       color: "text-orange-500", 
       bgColor: "bg-orange-500/20",
       borderColor: "border-orange-500/30",
-      level: 90,
+      stars: 5,
       category: "Backend"
     },
     { 
@@ -34,7 +34,7 @@ const Skills = () => {
       color: "text-yellow-500", 
       bgColor: "bg-yellow-500/20",
       borderColor: "border-yellow-500/30",
-      level: 85,
+      stars: 4,
       category: "Backend"
     },
     { 
@@ -43,7 +43,7 @@ const Skills = () => {
       color: "text-green-500", 
       bgColor: "bg-green-500/20",
       borderColor: "border-green-500/30",
-      level: 88,
+      stars: 5,
       category: "Framework"
     },
     { 
@@ -52,7 +52,7 @@ const Skills = () => {
       color: "text-blue-500", 
       bgColor: "bg-blue-500/20",
       borderColor: "border-blue-500/30",
-      level: 85,
+      stars: 4,
       category: "Database"
     },
     { 
@@ -61,7 +61,7 @@ const Skills = () => {
       color: "text-cyan-400", 
       bgColor: "bg-cyan-400/20",
       borderColor: "border-cyan-400/30",
-      level: 80,
+      stars: 4,
       category: "Frontend"
     },
     { 
@@ -70,7 +70,7 @@ const Skills = () => {
       color: "text-green-400", 
       bgColor: "bg-green-400/20",
       borderColor: "border-green-400/30",
-      level: 82,
+      stars: 4,
       category: "Backend"
     }
   ];
@@ -134,21 +134,24 @@ const Skills = () => {
                             {skill.category}
                           </span>
                           
-                          {/* Skill Level */}
+                          {/* Skill Stars */}
                           <div className="mt-4">
-                            <div className="flex justify-between items-center mb-2">
-                              <span className="text-sm text-secondary-foreground">Proficiência</span>
-                              <span className={`text-sm font-bold ${skill.color}`}>{skill.level}%</span>
+                            <div className="flex justify-center items-center gap-1">
+                              {Array.from({ length: 5 }, (_, i) => (
+                                <Star
+                                  key={i}
+                                  className={`h-4 w-4 transition-all duration-300 ${
+                                    i < skill.stars
+                                      ? `${skill.color} fill-current animate-pulse`
+                                      : 'text-muted-foreground/30'
+                                  }`}
+                                  style={{ animationDelay: `${800 + i * 100}ms` }}
+                                />
+                              ))}
                             </div>
-                            <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
-                              <div 
-                                className={`h-2 rounded-full transition-all duration-1000 ease-out ${skill.color.replace('text-', 'bg-')}`}
-                                style={{ 
-                                  width: `${skill.level}%`,
-                                  animationDelay: `${600 + index * 100}ms`
-                                }}
-                              ></div>
-                            </div>
+                            <p className="text-xs text-secondary-foreground mt-1">
+                              {skill.stars === 5 ? 'Expert' : skill.stars === 4 ? 'Avançado' : 'Intermediário'}
+                            </p>
                           </div>
                         </div>
                       </div>

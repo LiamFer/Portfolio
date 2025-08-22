@@ -17,8 +17,12 @@ const Hero = () => {
   ];
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background">
-      <SilkBackground />
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden"> 
+         <SilkBackground speed={5}
+        scale={1}
+        color="#3d2e79ff"
+        noiseIntensity={1.5}
+        rotation={0} />
       
       {/* Floating Tech Icons */}
       {techIcons.map((tech, index) => (

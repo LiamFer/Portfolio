@@ -1,0 +1,8 @@
+.faulty-terminal-container {
+  position: absolute; /* agora ocupa toda a section */
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* manda pra trás */
+  overflow: hidden;
+}

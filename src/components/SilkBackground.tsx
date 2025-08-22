@@ -1,124 +1,127 @@
-import { useEffect, useRef } from 'react';
+/* eslint-disable react/no-unknown-property */
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { forwardRef, useRef, useMemo, useLayoutEffect } from "react";
+import { Color } from "three";
 
-const SilkBackground = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+const hexToNormalizedRGB = (hex: string) => {
+  hex = hex.replace("#", "");
+  return [
+    parseInt(hex.slice(0, 2), 16) / 255,
+    parseInt(hex.slice(2, 4), 16) / 255,
+    parseInt(hex.slice(4, 6), 16) / 255,
+  ];
+};
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+const vertexShader = `
+varying vec2 vUv;
+varying vec3 vPosition;
 
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+void main() {
+  vPosition = position;
+  vUv = uv;
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+}
+`;
 
-    let animationId: number;
-    let time = 0;
+const fragmentShader = `
+varying vec2 vUv;
+varying vec3 vPosition;
 
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
+uniform float uTime;
+uniform vec3  uColor;
+uniform float uSpeed;
+uniform float uScale;
+uniform float uRotation;
+uniform float uNoiseIntensity;
 
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+const float e = 2.71828182845904523536;
 
-    const drawSilk = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      const width = canvas.width;
-      const height = canvas.height;
-      
-      // Create gradient background
-      const gradient = ctx.createRadialGradient(
-        width / 2, height / 2, 0,
-        width / 2, height / 2, Math.max(width, height) / 2
-      );
-      gradient.addColorStop(0, 'rgba(160, 85, 247, 0.1)'); // Primary purple
-      gradient.addColorStop(0.5, 'rgba(192, 132, 252, 0.05)'); // Accent purple
-      gradient.addColorStop(1, 'rgba(34, 35, 47, 0.8)'); // Dark background
-      
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, width, height);
+float noise(vec2 texCoord) {
+  float G = e;
+  vec2  r = (G * sin(G * texCoord));
+  return fract(r.x * r.y * (1.0 + texCoord.x));
+}
 
-      // Draw flowing silk waves
-      const waves = 3;
-      for (let w = 0; w < waves; w++) {
-        ctx.beginPath();
-        ctx.strokeStyle = `rgba(160, 85, 247, ${0.1 - w * 0.02})`;
-        ctx.lineWidth = 2 - w * 0.3;
-        
-        for (let x = 0; x <= width; x += 10) {
-          const y = height / 2 + 
-            Math.sin((x + time * 2) * 0.01 + w * 2) * 50 * (1 + w * 0.5) +
-            Math.sin((x + time * 1.5) * 0.005 + w * 1.5) * 30 * (1 + w * 0.3);
-          
-          if (x === 0) {
-            ctx.moveTo(x, y);
-          } else {
-            ctx.lineTo(x, y);
-          }
-        }
-        ctx.stroke();
-      }
+vec2 rotateUvs(vec2 uv, float angle) {
+  float c = cos(angle);
+  float s = sin(angle);
+  mat2  rot = mat2(c, -s, s, c);
+  return rot * uv;
+}
 
-      // Add floating particles with silk effect
-      const particleCount = 30;
-      for (let i = 0; i < particleCount; i++) {
-        const x = (i * width / particleCount + time * 0.5) % width;
-        const y = height / 2 + 
-          Math.sin(x * 0.01 + time * 0.01 + i) * 100 +
-          Math.sin(x * 0.005 + time * 0.008 + i * 0.5) * 50;
-        
-        const size = 2 + Math.sin(time * 0.02 + i) * 1;
-        const opacity = 0.3 + Math.sin(time * 0.015 + i * 0.7) * 0.2;
-        
-        ctx.beginPath();
-        ctx.arc(x, y, size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(192, 132, 252, ${opacity})`;
-        ctx.fill();
-      }
+void main() {
+  float rnd        = noise(gl_FragCoord.xy);
+  vec2  uv         = rotateUvs(vUv * uScale, uRotation);
+  vec2  tex        = uv * uScale;
+  float tOffset    = uSpeed * uTime;
 
-      // Add silk threads
-      for (let t = 0; t < 5; t++) {
-        ctx.beginPath();
-        ctx.strokeStyle = `rgba(160, 85, 247, 0.08)`;
-        ctx.lineWidth = 1;
-        
-        const startX = (t * width / 5 + time * 0.3) % width;
-        const startY = height * 0.3;
-        const endX = ((t + 2) * width / 5 + time * 0.2) % width;
-        const endY = height * 0.7;
-        
-        // Curved silk thread
-        ctx.moveTo(startX, startY);
-        ctx.quadraticCurveTo(
-          (startX + endX) / 2 + Math.sin(time * 0.01 + t) * 100,
-          (startY + endY) / 2 + Math.cos(time * 0.008 + t) * 50,
-          endX, endY
-        );
-        ctx.stroke();
-      }
+  tex.y += 0.03 * sin(8.0 * tex.x - tOffset);
 
-      time += 1;
-      animationId = requestAnimationFrame(drawSilk);
-    };
+  float pattern = 0.6 +
+                  0.4 * sin(5.0 * (tex.x + tex.y +
+                                   cos(3.0 * tex.x + 5.0 * tex.y) +
+                                   0.02 * tOffset) +
+                           sin(20.0 * (tex.x + tex.y - 0.1 * tOffset)));
 
-    drawSilk();
+  vec4 col = vec4(uColor, 1.0) * vec4(pattern) - rnd / 15.0 * uNoiseIntensity;
+  col.a = 1.0;
+  gl_FragColor = col;
+}
+`;
 
-    return () => {
-      window.removeEventListener('resize', resizeCanvas);
-      cancelAnimationFrame(animationId);
-    };
-  }, []);
+const SilkPlane = forwardRef(function SilkPlane({ uniforms }: any, ref: any) {
+  const { viewport } = useThree();
+
+  useLayoutEffect(() => {
+    if (ref.current) {
+      ref.current.scale.set(viewport.width, viewport.height, 1);
+    }
+  }, [ref, viewport]);
+
+  useFrame((_, delta) => {
+    ref.current.material.uniforms.uTime.value += 0.1 * delta;
+  });
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full"
-      style={{
-        background: 'transparent',
-        zIndex: 1,
-      }}
-    />
+    <mesh ref={ref}>
+      <planeGeometry args={[1, 1, 1, 1]} />
+      <shaderMaterial
+        uniforms={uniforms}
+        vertexShader={vertexShader}
+        fragmentShader={fragmentShader}
+      />
+    </mesh>
+  );
+});
+SilkPlane.displayName = "SilkPlane";
+
+const SilkBackground = ({
+  speed = 5,
+  scale = 1,
+  color = "#7B7481",
+  noiseIntensity = 1.5,
+  rotation = 0,
+}) => {
+  const meshRef = useRef<any>();
+
+  const uniforms = useMemo(
+    () => ({
+      uSpeed: { value: speed },
+      uScale: { value: scale },
+      uNoiseIntensity: { value: noiseIntensity },
+      uColor: { value: new Color(...hexToNormalizedRGB(color)) },
+      uRotation: { value: rotation },
+      uTime: { value: 0 },
+    }),
+    [speed, scale, noiseIntensity, color, rotation]
+  );
+
+  return (
+    <div className="absolute inset-0 -z-10">
+      <Canvas dpr={[1, 2]} frameloop="always">
+        <SilkPlane ref={meshRef} uniforms={uniforms} />
+      </Canvas>
+    </div>
   );
 };
 

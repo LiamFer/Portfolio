@@ -9,11 +9,39 @@ const About = () => {
     { icon: Award, text: "LeetCode", label: "Praticante", color: "text-accent" }
   ];
 
-  const skills = [
-    { name: "Backend Development", level: 90, color: "bg-primary" },
-    { name: "Problem Solving", level: 95, color: "bg-accent" },
-    { name: "API Design", level: 85, color: "bg-primary" },
-    { name: "Database Design", level: 80, color: "bg-accent" }
+  const expertiseAreas = [
+    { 
+      name: "Backend Development", 
+      badge: "Expert", 
+      color: "bg-gradient-to-r from-emerald-500 to-emerald-600",
+      textColor: "text-emerald-100",
+      icon: Code2,
+      description: "APIs robustas e escaláveis"
+    },
+    { 
+      name: "Problem Solving", 
+      badge: "Advanced", 
+      color: "bg-gradient-to-r from-purple-500 to-purple-600",
+      textColor: "text-purple-100",
+      icon: Lightbulb,
+      description: "Algoritmos e estruturas de dados"
+    },
+    { 
+      name: "API Design", 
+      badge: "Proficient", 
+      color: "bg-gradient-to-r from-blue-500 to-blue-600",
+      textColor: "text-blue-100",
+      icon: Zap,
+      description: "RESTful e documentação"
+    },
+    { 
+      name: "Database Design", 
+      badge: "Solid", 
+      color: "bg-gradient-to-r from-orange-500 to-orange-600",
+      textColor: "text-orange-100",
+      icon: Target,
+      description: "Modelagem e otimização"
+    }
   ];
 
   return (
@@ -121,26 +149,32 @@ const About = () => {
                   <Target className="h-5 w-5 text-primary" />
                   Expertise
                 </h4>
-                <div className="space-y-4">
-                  {skills.map((skill, index) => (
-                    <ScrollAnimation key={skill.name} delay={1000 + index * 100}>
-                      <div>
-                        <div className="flex justify-between items-center mb-2">
-                          <span className="text-sm font-medium text-secondary-foreground">{skill.name}</span>
-                          <span className="text-xs text-primary font-semibold">{skill.level}%</span>
+                <div className="space-y-3">
+                  {expertiseAreas.map((area, index) => {
+                    const IconComponent = area.icon;
+                    return (
+                      <ScrollAnimation key={area.name} delay={1000 + index * 100}>
+                        <div className="group relative overflow-hidden rounded-xl border border-border/50 hover:border-border transition-all duration-300">
+                          <div className="p-4 bg-gradient-to-r from-card/90 to-card/70 hover:from-card to-card/80 transition-all duration-300">
+                            <div className="flex items-center justify-between mb-2">
+                              <div className="flex items-center gap-3">
+                                <div className="h-8 w-8 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                  <IconComponent className="h-4 w-4 text-primary" />
+                                </div>
+                                <span className="font-medium text-foreground text-sm">{area.name}</span>
+                              </div>
+                              <div className={`px-2 py-1 rounded-full text-xs font-semibold ${area.color} ${area.textColor} shadow-sm`}>
+                                {area.badge}
+                              </div>
+                            </div>
+                            <p className="text-xs text-secondary-foreground ml-11">
+                              {area.description}
+                            </p>
+                          </div>
                         </div>
-                        <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
-                          <div 
-                            className={`h-2 ${skill.color} rounded-full transition-all duration-1000 ease-out hover:scale-105`}
-                            style={{ 
-                              width: `${skill.level}%`,
-                              animationDelay: `${1000 + index * 100}ms`
-                            }}
-                          ></div>
-                        </div>
-                      </div>
-                    </ScrollAnimation>
-                  ))}
+                      </ScrollAnimation>
+                    );
+                  })}
                 </div>
               </div>
             </ScrollAnimation>

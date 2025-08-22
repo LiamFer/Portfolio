@@ -254,6 +254,15 @@ All colors MUST be HSL.
   }
 }
 
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes silkFlow {
   0% {
     transform: translateX(-100px) rotate(0deg);

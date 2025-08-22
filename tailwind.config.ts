@@ -93,7 +93,8 @@ export default {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.8s ease-out forwards',
-				'bounce-in': 'bounce-in 1s ease-out forwards'
+				'bounce-in': 'bounce-in 1s ease-out forwards',
+				'spin-slow': 'spin-slow 8s linear infinite'
 			}
 		}
 	},

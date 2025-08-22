@@ -25,7 +25,6 @@ const Skills = () => {
       color: "text-orange-500", 
       bgColor: "bg-orange-500/20",
       borderColor: "border-orange-500/30",
-      stars: 5,
       category: "Backend"
     },
     { 
@@ -34,7 +33,6 @@ const Skills = () => {
       color: "text-yellow-500", 
       bgColor: "bg-yellow-500/20",
       borderColor: "border-yellow-500/30",
-      stars: 4,
       category: "Backend"
     },
     { 
@@ -43,7 +41,6 @@ const Skills = () => {
       color: "text-green-500", 
       bgColor: "bg-green-500/20",
       borderColor: "border-green-500/30",
-      stars: 5,
       category: "Framework"
     },
     { 
@@ -52,7 +49,6 @@ const Skills = () => {
       color: "text-blue-500", 
       bgColor: "bg-blue-500/20",
       borderColor: "border-blue-500/30",
-      stars: 4,
       category: "Database"
     },
     { 
@@ -61,7 +57,6 @@ const Skills = () => {
       color: "text-cyan-400", 
       bgColor: "bg-cyan-400/20",
       borderColor: "border-cyan-400/30",
-      stars: 4,
       category: "Frontend"
     },
     { 
@@ -70,7 +65,6 @@ const Skills = () => {
       color: "text-green-400", 
       bgColor: "bg-green-400/20",
       borderColor: "border-green-400/30",
-      stars: 4,
       category: "Backend"
     }
   ];
@@ -130,29 +124,9 @@ const Skills = () => {
                             {skill.name}
                           </h4>
                           
-                          <span className={`inline-block px-3 py-1 text-xs rounded-full ${skill.bgColor} ${skill.color} font-medium mb-3`}>
+                          <span className={`inline-block px-3 py-1 text-xs rounded-full ${skill.bgColor} ${skill.color} font-medium`}>
                             {skill.category}
                           </span>
-                          
-                          {/* Skill Stars */}
-                          <div className="mt-4">
-                            <div className="flex justify-center items-center gap-1">
-                              {Array.from({ length: 5 }, (_, i) => (
-                                <Star
-                                  key={i}
-                                  className={`h-4 w-4 transition-all duration-300 ${
-                                    i < skill.stars
-                                      ? `${skill.color} fill-current animate-pulse`
-                                      : 'text-muted-foreground/30'
-                                  }`}
-                                  style={{ animationDelay: `${800 + i * 100}ms` }}
-                                />
-                              ))}
-                            </div>
-                            <p className="text-xs text-secondary-foreground mt-1">
-                              {skill.stars === 5 ? 'Expert' : skill.stars === 4 ? 'Avançado' : 'Intermediário'}
-                            </p>
-                          </div>
                         </div>
                       </div>
                     </div>

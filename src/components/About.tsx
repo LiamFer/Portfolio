@@ -9,39 +9,11 @@ const About = () => {
     { icon: Award, text: "LeetCode", label: "Praticante", color: "text-accent" }
   ];
 
-  const expertiseAreas = [
-    { 
-      name: "Backend Development", 
-      badge: "Expert", 
-      color: "bg-gradient-to-r from-emerald-500 to-emerald-600",
-      textColor: "text-emerald-100",
-      icon: Code2,
-      description: "APIs robustas e escaláveis"
-    },
-    { 
-      name: "Problem Solving", 
-      badge: "Advanced", 
-      color: "bg-gradient-to-r from-purple-500 to-purple-600",
-      textColor: "text-purple-100",
-      icon: Lightbulb,
-      description: "Algoritmos e estruturas de dados"
-    },
-    { 
-      name: "API Design", 
-      badge: "Proficient", 
-      color: "bg-gradient-to-r from-blue-500 to-blue-600",
-      textColor: "text-blue-100",
-      icon: Zap,
-      description: "RESTful e documentação"
-    },
-    { 
-      name: "Database Design", 
-      badge: "Solid", 
-      color: "bg-gradient-to-r from-orange-500 to-orange-600",
-      textColor: "text-orange-100",
-      icon: Target,
-      description: "Modelagem e otimização"
-    }
+  const skills = [
+    { name: "Backend Development", level: 90, color: "bg-primary" },
+    { name: "Problem Solving", level: 95, color: "bg-accent" },
+    { name: "API Design", level: 85, color: "bg-primary" },
+    { name: "Database Design", level: 80, color: "bg-accent" }
   ];
 
   return (
@@ -119,7 +91,7 @@ const About = () => {
           </div>
 
           {/* Sidebar with highlights and skills */}
-          <div className="space-y-6 flex flex-col justify-start">
+          <div className="space-y-6">
             {/* Highlights */}
             <ScrollAnimation delay={400}>
               <div className="grid grid-cols-2 gap-4">
@@ -144,32 +116,31 @@ const About = () => {
 
             {/* Skills Progress */}
             <ScrollAnimation delay={800}>
-              <div className="tech-card p-4">
-                <h4 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
-                  <Target className="h-4 w-4 text-primary" />
+              <div className="tech-card p-6">
+                <h4 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+                  <Target className="h-5 w-5 text-primary" />
                   Expertise
                 </h4>
-                <div className="grid grid-cols-2 gap-2">
-                  {expertiseAreas.slice(0, 4).map((area, index) => {
-                    const IconComponent = area.icon;
-                    return (
-                      <ScrollAnimation key={area.name} delay={1000 + index * 50}>
-                        <div className="group relative overflow-hidden rounded-md border border-border/30 hover:border-border/50 transition-all duration-300">
-                          <div className="p-2 bg-card/50 hover:bg-card/70 transition-all duration-300">
-                            <div className="flex flex-col items-center text-center">
-                              <div className="h-5 w-5 bg-gradient-to-br from-primary/20 to-accent/20 rounded flex items-center justify-center mb-1 group-hover:scale-110 transition-transform duration-300">
-                                <IconComponent className="h-2.5 w-2.5 text-primary" />
-                              </div>
-                              <span className="font-medium text-foreground text-[10px] mb-0.5 leading-tight">{area.name}</span>
-                              <div className={`px-1.5 py-0.5 rounded text-[8px] font-semibold ${area.color} ${area.textColor}`}>
-                                {area.badge}
-                              </div>
-                            </div>
-                          </div>
+                <div className="space-y-4">
+                  {skills.map((skill, index) => (
+                    <ScrollAnimation key={skill.name} delay={1000 + index * 100}>
+                      <div>
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-sm font-medium text-secondary-foreground">{skill.name}</span>
+                          <span className="text-xs text-primary font-semibold">{skill.level}%</span>
                         </div>
-                      </ScrollAnimation>
-                    );
-                  })}
+                        <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
+                          <div 
+                            className={`h-2 ${skill.color} rounded-full transition-all duration-1000 ease-out hover:scale-105`}
+                            style={{ 
+                              width: `${skill.level}%`,
+                              animationDelay: `${1000 + index * 100}ms`
+                            }}
+                          ></div>
+                        </div>
+                      </div>
+                    </ScrollAnimation>
+                  ))}
                 </div>
               </div>
             </ScrollAnimation>

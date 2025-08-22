@@ -119,7 +119,7 @@ const About = () => {
           </div>
 
           {/* Sidebar with highlights and skills */}
-          <div className="space-y-6">
+          <div className="space-y-6 flex flex-col justify-start">
             {/* Highlights */}
             <ScrollAnimation delay={400}>
               <div className="grid grid-cols-2 gap-4">
@@ -144,32 +144,27 @@ const About = () => {
 
             {/* Skills Progress */}
             <ScrollAnimation delay={800}>
-              <div className="tech-card p-6 h-fit">
-                <h4 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-                  <Target className="h-5 w-5 text-primary" />
+              <div className="tech-card p-4">
+                <h4 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                  <Target className="h-4 w-4 text-primary" />
                   Expertise
                 </h4>
-                <div className="space-y-3">
-                  {expertiseAreas.map((area, index) => {
+                <div className="grid grid-cols-2 gap-2">
+                  {expertiseAreas.slice(0, 4).map((area, index) => {
                     const IconComponent = area.icon;
                     return (
-                      <ScrollAnimation key={area.name} delay={1000 + index * 100}>
-                        <div className="group relative overflow-hidden rounded-lg border border-border/50 hover:border-border transition-all duration-300">
-                          <div className="p-3 bg-gradient-to-r from-card/90 to-card/70 hover:from-card to-card/80 transition-all duration-300">
-                            <div className="flex items-center justify-between mb-1">
-                              <div className="flex items-center gap-2">
-                                <div className="h-6 w-6 bg-gradient-to-br from-primary/20 to-accent/20 rounded-md flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                  <IconComponent className="h-3 w-3 text-primary" />
-                                </div>
-                                <span className="font-medium text-foreground text-xs">{area.name}</span>
+                      <ScrollAnimation key={area.name} delay={1000 + index * 50}>
+                        <div className="group relative overflow-hidden rounded-md border border-border/30 hover:border-border/50 transition-all duration-300">
+                          <div className="p-2 bg-card/50 hover:bg-card/70 transition-all duration-300">
+                            <div className="flex flex-col items-center text-center">
+                              <div className="h-5 w-5 bg-gradient-to-br from-primary/20 to-accent/20 rounded flex items-center justify-center mb-1 group-hover:scale-110 transition-transform duration-300">
+                                <IconComponent className="h-2.5 w-2.5 text-primary" />
                               </div>
-                              <div className={`px-2 py-0.5 rounded-full text-[10px] font-semibold ${area.color} ${area.textColor} shadow-sm`}>
+                              <span className="font-medium text-foreground text-[10px] mb-0.5 leading-tight">{area.name}</span>
+                              <div className={`px-1.5 py-0.5 rounded text-[8px] font-semibold ${area.color} ${area.textColor}`}>
                                 {area.badge}
                               </div>
                             </div>
-                            <p className="text-[10px] text-secondary-foreground ml-8 opacity-80">
-                              {area.description}
-                            </p>
                           </div>
                         </div>
                       </ScrollAnimation>

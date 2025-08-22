@@ -144,7 +144,7 @@ const About = () => {
 
             {/* Skills Progress */}
             <ScrollAnimation delay={800}>
-              <div className="tech-card p-6">
+              <div className="tech-card p-6 h-fit">
                 <h4 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
                   <Target className="h-5 w-5 text-primary" />
                   Expertise
@@ -154,20 +154,20 @@ const About = () => {
                     const IconComponent = area.icon;
                     return (
                       <ScrollAnimation key={area.name} delay={1000 + index * 100}>
-                        <div className="group relative overflow-hidden rounded-xl border border-border/50 hover:border-border transition-all duration-300">
-                          <div className="p-4 bg-gradient-to-r from-card/90 to-card/70 hover:from-card to-card/80 transition-all duration-300">
-                            <div className="flex items-center justify-between mb-2">
-                              <div className="flex items-center gap-3">
-                                <div className="h-8 w-8 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                  <IconComponent className="h-4 w-4 text-primary" />
+                        <div className="group relative overflow-hidden rounded-lg border border-border/50 hover:border-border transition-all duration-300">
+                          <div className="p-3 bg-gradient-to-r from-card/90 to-card/70 hover:from-card to-card/80 transition-all duration-300">
+                            <div className="flex items-center justify-between mb-1">
+                              <div className="flex items-center gap-2">
+                                <div className="h-6 w-6 bg-gradient-to-br from-primary/20 to-accent/20 rounded-md flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                  <IconComponent className="h-3 w-3 text-primary" />
                                 </div>
-                                <span className="font-medium text-foreground text-sm">{area.name}</span>
+                                <span className="font-medium text-foreground text-xs">{area.name}</span>
                               </div>
-                              <div className={`px-2 py-1 rounded-full text-xs font-semibold ${area.color} ${area.textColor} shadow-sm`}>
+                              <div className={`px-2 py-0.5 rounded-full text-[10px] font-semibold ${area.color} ${area.textColor} shadow-sm`}>
                                 {area.badge}
                               </div>
                             </div>
-                            <p className="text-xs text-secondary-foreground ml-11">
+                            <p className="text-[10px] text-secondary-foreground ml-8 opacity-80">
                               {area.description}
                             </p>
                           </div>

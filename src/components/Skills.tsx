@@ -73,9 +73,9 @@ const Skills = () => {
     { name: "JavaScript", icon: Terminal, color: "text-yellow-400" },
     { name: "TypeScript", icon: FileText, color: "text-blue-400" },
     { name: "Git", icon: GitBranch, color: "text-red-500" },
-    { name: "RESTful APIs", icon: Globe, color: "text-purple-400" },
-    { name: "Resolução de Problemas", icon: Lightbulb, color: "text-yellow-300" },
-    { name: "Comunicação", icon: MessageCircle, color: "text-pink-400" }
+    { name: "MQTT", icon: Globe, color: "text-purple-400" },
+    { name: "OPC-UA", icon: Server, color: "text-yellow-300" },
+    { name: "WebSocket", icon: MessageCircle, color: "text-pink-400" }
   ];
 
   const specialties = [

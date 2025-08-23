@@ -24,18 +24,18 @@ const Projects = () => {
       image: cloudcartPreview
     },
     {
-      title: "FitPulse API",
-      description: "API RESTful segura e escalável para gerenciar rotinas de treino pessoais. Construída com Java, Spring Boot e autenticação JWT, suporta registro de usuários e rastreamento de exercícios.",
-      technologies: ["Java", "Spring Boot", "JWT", "PostgreSQL", "Redis"],
-      githubUrl: "https://github.com/LiamFer/FitPulse-API",
+      title: "Taskflow",
+      description: "Sistema de gerenciamento de tarefas e fluxos de trabalho construído para otimizar produtividade. Inclui funcionalidades de organização, priorização e acompanhamento de progresso.",
+      technologies: ["Java", "Spring Boot", "React", "PostgreSQL", "Task Management"],
+      githubUrl: "https://github.com/LiamFer/Taskflow",
       demoUrl: "#",
       image: fitpulsePreview
     },
     {
-      title: "Markdown API",
-      description: "API RESTful construída com Spring Boot que permite upload de notas em markdown, verificação gramatical usando LanguageTool e renderização das notas como HTML.",
-      technologies: ["Java", "Spring Boot", "LanguageTool", "Flexmark"],
-      githubUrl: "https://github.com/LiamFer/markdownAPI",
+      title: "ENEM Analysis",
+      description: "Projeto de análise de dados do ENEM (Exame Nacional do Ensino Médio) com visualizações estatísticas e insights sobre desempenho educacional brasileiro usando ciência de dados.",
+      technologies: ["Python", "Data Science", "Pandas", "Matplotlib", "Statistical Analysis"],
+      githubUrl: "https://github.com/LiamFer/ENEM-Analysis",
       demoUrl: "#",
       image: markdownPreview
     }

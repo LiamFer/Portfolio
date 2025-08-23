@@ -1,7 +1,8 @@
+
 /* eslint-disable react/no-unknown-property */
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { forwardRef, useRef, useMemo, useLayoutEffect } from "react";
-import { Color } from "three";
+import { Color, ShaderMaterial } from "three";
 
 const hexToNormalizedRGB = (hex: string) => {
   hex = hex.replace("#", "");
@@ -69,31 +70,35 @@ void main() {
 }
 `;
 
-const SilkPlane = forwardRef(function SilkPlane({ uniforms }: any, ref: any) {
+const SilkPlane = forwardRef<any, { uniforms: any }>(function SilkPlane({ uniforms }, ref) {
   const { viewport } = useThree();
 
   useLayoutEffect(() => {
-    if (ref.current) {
+    if (ref && typeof ref === 'object' && 'current' in ref && ref.current) {
       ref.current.scale.set(viewport.width, viewport.height, 1);
     }
   }, [ref, viewport]);
 
   useFrame((_, delta) => {
-    ref.current.material.uniforms.uTime.value += 0.1 * delta;
+    if (ref && typeof ref === 'object' && 'current' in ref && ref.current) {
+      ref.current.material.uniforms.uTime.value += 0.1 * delta;
+    }
   });
 
   return (
     <mesh ref={ref}>
       <planeGeometry args={[1, 1, 1, 1]} />
       <shaderMaterial
-        uniforms={uniforms}
-        vertexShader={vertexShader}
-        fragmentShader={fragmentShader}
+        attach="material"
+        args={[{
+          uniforms,
+          vertexShader,
+          fragmentShader,
+        }]}
       />
     </mesh>
   );
 });
-SilkPlane.displayName = "SilkPlane";
 
 const SilkBackground = ({
   speed = 5,

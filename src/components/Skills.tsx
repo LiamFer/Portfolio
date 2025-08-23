@@ -20,19 +20,19 @@ import {
 const Skills = () => {
   const mainSkills = [
     { 
-      name: "Java", 
-      icon: Coffee, 
-      color: "text-orange-500", 
-      bgColor: "bg-orange-500/20",
-      borderColor: "border-orange-500/30",
-      category: "Backend"
-    },
-    { 
       name: "Python", 
       icon: Code, 
       color: "text-yellow-500", 
       bgColor: "bg-yellow-500/20",
       borderColor: "border-yellow-500/30",
+      category: "Backend"
+    },
+    { 
+      name: "Java", 
+      icon: Coffee, 
+      color: "text-orange-500", 
+      bgColor: "bg-orange-500/20",
+      borderColor: "border-orange-500/30",
       category: "Backend"
     },
     { 
@@ -114,7 +114,7 @@ const Skills = () => {
                       {/* Animated Border */}
                       <div className={`absolute -inset-1 bg-gradient-to-br ${skill.bgColor} rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500`}></div>
                       
-                      <div className={`relative bg-card/90 backdrop-blur-sm border-2 ${skill.borderColor} rounded-2xl p-6 hover:scale-105 transform transition-all duration-500 cursor-pointer`}>
+                      <div className={`cursor-target relative bg-card/90 backdrop-blur-sm border-2 ${skill.borderColor} rounded-2xl p-6 hover:scale-105 transform transition-all duration-500 cursor-pointer`}>
                         <div className="text-center">
                           <div className={`w-16 h-16 ${skill.bgColor} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
                             <IconComponent className={`h-8 w-8 ${skill.color}`} />
@@ -149,7 +149,7 @@ const Skills = () => {
                 const IconComponent = skill.icon;
                 return (
                   <ScrollAnimation key={skill.name} delay={1000 + index * 100}>
-                    <div className="tech-card text-center p-4 hover:scale-110 transform transition-all duration-300 group cursor-pointer hover:border-primary/30">
+                    <div className="cursor-target tech-card text-center p-4 hover:scale-110 transform transition-all duration-300 group cursor-pointer hover:border-primary/30">
                       <IconComponent 
                         className={`h-8 w-8 mx-auto mb-3 ${skill.color} group-hover:scale-125 transition-transform duration-300`}
                       />
@@ -179,7 +179,7 @@ const Skills = () => {
                     <div className="group relative">
                       <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500 animate-pulse"></div>
                       
-                      <div className="relative tech-card text-center p-6 hover:scale-105 transform transition-all duration-500">
+                      <div className="cursor-target relative tech-card text-center p-6 hover:scale-105 transform transition-all duration-500">
                         <div className={`w-12 h-12 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
                           <IconComponent className={`h-6 w-6 ${specialty.color}`} />
                         </div>
@@ -200,7 +200,7 @@ const Skills = () => {
         
         <ScrollAnimation delay={1800}>
           <div className="mt-16 text-center">
-            <div className="inline-block relative group">
+            <div className="cursor-target inline-block relative group">
               <div className="absolute -inset-2 bg-gradient-to-r from-primary via-accent to-primary rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-500 animate-pulse"></div>
               <div className="relative tech-card p-6 bg-card/90 backdrop-blur-sm">
                 <div className="flex items-center justify-center gap-3 mb-2">

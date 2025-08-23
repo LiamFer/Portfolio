@@ -31,7 +31,7 @@ const Contact = () => {
       <div className="container mx-auto max-w-4xl">
         <h2 className="section-title">Vamos Conversar?</h2>
         
-        <div className="tech-card text-center mb-12">
+        <div className="cursor-target tech-card text-center mb-12">
           <div className="fade-in">
             <MessageCircle className="h-16 w-16 mx-auto mb-6 text-primary" />
             <p className="text-xl text-secondary-foreground mb-8 leading-relaxed">
@@ -47,7 +47,7 @@ const Contact = () => {
             return (
               <div 
                 key={contact.type}
-                className="tech-card text-center group cursor-pointer"
+                className="cursor-target tech-card text-center group cursor-pointer"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="bounce-in">
@@ -77,7 +77,7 @@ const Contact = () => {
         </div>
         
         <div className="mt-16 text-center">
-          <div className="tech-card inline-block">
+          <div className="cursor-target tech-card inline-block">
             <p className="text-lg text-accent font-semibold mb-2">
               "Transformando ideias em código"
             </p>

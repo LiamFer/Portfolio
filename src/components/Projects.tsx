@@ -10,7 +10,7 @@ const Projects = () => {
     {
       title: "Trenchat",
       description: "Plataforma de chat em tempo real construída com Spring Boot e WebSockets, com mensagens instantâneas, múltiplas salas de chat e backend escalável.",
-      technologies: ["Spring Boot", "WebSockets", "TypeScript", "Real-time"],
+      technologies: ["Java","Spring Boot", "WebSockets", "TypeScript", "Real-time"],
       githubUrl: "https://github.com/LiamFer/Trenchat",
       demoUrl: "#",
       image: trenchatPreview
@@ -21,23 +21,23 @@ const Projects = () => {
       technologies: ["Java", "Spring Boot", "JWT", "Stripe", "Cloudinary"],
       githubUrl: "https://github.com/LiamFer/CloudCart",
       demoUrl: "#",
-      image: cloudcartPreview
+      image: "https://raw.githubusercontent.com/LiamFer/CloudCart/main/images/architecture.png"
     },
     {
       title: "Taskflow",
-      description: "Sistema de gerenciamento de tarefas e fluxos de trabalho construído para otimizar produtividade. Inclui funcionalidades de organização, priorização e acompanhamento de progresso.",
-      technologies: ["Java", "Spring Boot", "React", "PostgreSQL", "Task Management"],
+      description: "Taskflow é uma aplicação Fullstack desenvolvida para o gerenciamento de tarefas e fluxos de trabalho, com foco em colaboração em equipe. A aplicação oferece autenticação segura com JWT, integra-se via API REST e WebSocket, e tem uma interface moderna construída com Ant Design.",
+      technologies: ["React","NestJS","Real-time", "PostgreSQL", "Task Management"],
       githubUrl: "https://github.com/LiamFer/Taskflow",
       demoUrl: "#",
-      image: fitpulsePreview
+      image: "https://raw.githubusercontent.com/LiamFer/Taskflow/main/appWorking.gif"
     },
     {
       title: "ENEM Analysis",
       description: "Projeto de análise de dados do ENEM (Exame Nacional do Ensino Médio) com visualizações estatísticas e insights sobre desempenho educacional brasileiro usando ciência de dados.",
       technologies: ["Python", "Data Science", "Pandas", "Matplotlib", "Statistical Analysis"],
       githubUrl: "https://github.com/LiamFer/ENEM-Analysis",
-      demoUrl: "#",
-      image: markdownPreview
+      demoUrl: "https://enem-analysis.streamlit.app/",
+      image: "https://raw.githubusercontent.com/LiamFer/ENEM-Analysis/main/graphs/fluxogram.png"
     }
   ];
 
@@ -95,7 +95,7 @@ const Projects = () => {
                     </a>
                   </Button>
                   
-                  <Button
+                  {project.demoUrl != "#" && <Button
                     size="sm"
                     className="bg-accent hover:bg-accent/80 text-accent-foreground"
                     asChild
@@ -104,7 +104,7 @@ const Projects = () => {
                       <ExternalLink className="h-4 w-4 mr-2" />
                       Demo
                     </a>
-                  </Button>
+                  </Button>}
                 </div>
               </div>
             </div>

@@ -5,15 +5,15 @@ const About = () => {
   const highlights = [
     { icon: Calendar, text: "2023", label: "Início da Carreira", color: "text-primary" },
     { icon: Code2, text: "10+", label: "Tecnologias", color: "text-accent" },
-    { icon: Globe, text: "Global", label: "Experiência", color: "text-primary" },
+    { icon: Globe, text: "Inglês", label: "Experiência", color: "text-primary" },
     { icon: Award, text: "LeetCode", label: "Praticante", color: "text-accent" }
   ];
 
   const skills = [
-    { name: "Backend Development", level: 4, label: "Avançado", color: "bg-primary" },
-    { name: "Problem Solving", level: 5, label: "Especialista", color: "bg-accent" },
-    { name: "API Design", level: 4, label: "Avançado", color: "bg-primary" },
-    { name: "Database Design", level: 4, label: "Avançado", color: "bg-accent" }
+    { name: "Java & Spring Boot", level: 3, label: "Intermediário", color: "bg-primary" },
+    { name: "Problem Solving", level: 4, label: "Avançado", color: "bg-accent" },
+    { name: "Integração de Sistemas (APIs/ERPs)", level: 4, label: "Avançado", color: "bg-primary" },
+    { name: "Inglês", level: 4, label: "Avançado", color: "bg-accent" }
   ];
 
   return (
@@ -99,7 +99,7 @@ const About = () => {
                   const IconComponent = highlight.icon;
                   return (
                     <ScrollAnimation key={highlight.label} delay={600 + index * 100}>
-                      <div className="tech-card text-center p-4 hover:scale-105 transform transition-all duration-300 group cursor-pointer">
+                      <div className="cursor-target tech-card text-center p-4 hover:scale-105 transform transition-all duration-300 group cursor-pointer">
                         <IconComponent className={`h-8 w-8 mx-auto mb-2 ${highlight.color} group-hover:scale-110 transition-transform duration-300`} />
                         <div className={`text-2xl font-bold ${highlight.color} mb-1`}>
                           {highlight.text}

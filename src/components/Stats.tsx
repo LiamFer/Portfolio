@@ -42,7 +42,7 @@ const Stats = () => {
                   delay={index * 100}
                   className="text-center"
                 >
-                  <div className="tech-card group cursor-pointer h-full">
+                  <div className="cursor-target tech-card group cursor-pointer h-full">
                     <IconComponent className={`h-10 w-10 mx-auto mb-4 ${stat.color} group-hover:scale-110 transition-transform duration-300`} />
                     <div className={`text-3xl md:text-4xl font-bold mb-2 ${stat.color}`}>
                       {stat.number}

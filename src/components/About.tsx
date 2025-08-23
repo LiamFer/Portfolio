@@ -10,10 +10,10 @@ const About = () => {
   ];
 
   const skills = [
-    { name: "Backend Development", level: 90, color: "bg-primary" },
-    { name: "Problem Solving", level: 95, color: "bg-accent" },
-    { name: "API Design", level: 85, color: "bg-primary" },
-    { name: "Database Design", level: 80, color: "bg-accent" }
+    { name: "Backend Development", level: 4, label: "Avançado", color: "bg-primary" },
+    { name: "Problem Solving", level: 5, label: "Especialista", color: "bg-accent" },
+    { name: "API Design", level: 4, label: "Avançado", color: "bg-primary" },
+    { name: "Database Design", level: 4, label: "Avançado", color: "bg-accent" }
   ];
 
   return (
@@ -125,19 +125,19 @@ const About = () => {
                   {skills.map((skill, index) => (
                     <ScrollAnimation key={skill.name} delay={1000 + index * 100}>
                       <div>
-                        <div className="flex justify-between items-center mb-2">
-                          <span className="text-sm font-medium text-secondary-foreground">{skill.name}</span>
-                          <span className="text-xs text-primary font-semibold">{skill.level}%</span>
-                        </div>
-                        <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
-                          <div 
-                            className={`h-2 ${skill.color} rounded-full transition-all duration-1000 ease-out hover:scale-105`}
-                            style={{ 
-                              width: `${skill.level}%`,
-                              animationDelay: `${1000 + index * 100}ms`
-                            }}
-                          ></div>
-                        </div>
+                          <div className="flex justify-between items-center mb-2">
+                            <span className="text-sm font-medium text-secondary-foreground">{skill.name}</span>
+                            <span className="text-xs text-primary font-semibold">{skill.label}</span>
+                          </div>
+                          <div className="flex gap-2">
+                            {[1,2,3,4,5].map((i) => (
+                              <div
+                                key={i}
+                                className={`h-2 flex-1 rounded-full ${i <= skill.level ? skill.color : 'bg-muted'}`}
+                                style={{ animationDelay: `${1000 + index * 100}ms` }}
+                              />
+                            ))}
+                          </div>
                       </div>
                     </ScrollAnimation>
                   ))}

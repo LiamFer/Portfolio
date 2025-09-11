@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
-import trenchatPreview from "@/assets/trenchat-preview.jpg";
+import trenchatPreview from "@/assets/trenchat-preview.png";
 import cloudcartPreview from "@/assets/cloudcart-preview.jpg";
 import fitpulsePreview from "@/assets/fitpulse-preview.jpg";
 import markdownPreview from "@/assets/markdown-preview.jpg";

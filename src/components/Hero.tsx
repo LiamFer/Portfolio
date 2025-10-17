@@ -12,7 +12,7 @@ import TargetCursor from "./TargetCursor";
 
 const Hero = () => {
   const profileImage =
-    "https://media.licdn.com/dms/image/v2/D4D03AQFmOtmA_G-7Eg/profile-displayphoto-shrink_200_200/B4DZXxba3KHsAk-/0/1743512252344?e=2147483647&v=beta&t=EMAf8lHCWHgaVA7WYou62jB6uePcU8OaTgZy2nK2BQQ";
+    "https://media.licdn.com/dms/image/v2/D4D03AQEvpb7YX92vJw/profile-displayphoto-crop_800_800/B4DZnvCHmiJMAI-/0/1760651936018?e=1762387200&v=beta&t=vx09kAsKVpX4XJWmRhpaJBIMEYAfWVk5lr_Hrs0BBiQ";
 
   const scrollToPortfolio = () => {
     document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
@@ -31,7 +31,7 @@ const Hero = () => {
       <SilkBackground
         speed={5}
         scale={1}
-        color="#3d2e79ff"
+        color="#2e4c79ff"
         noiseIntensity={1.5}
         rotation={0}
       />

@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
-import trenchatPreview from "@/assets/trenchat-preview.png";
-import cloudcartPreview from "@/assets/cloudcart-preview.jpg";
-import fitpulsePreview from "@/assets/fitpulse-preview.jpg";
-import markdownPreview from "@/assets/markdown-preview.jpg";
+import trenchatPreview from "@/assets/trenchat.gif";
+import cloudcartPreview from "@/assets/cloudcart.png";
+import taskflowPreview from "@/assets/taskflow.gif";
+import verzelPreview from "@/assets/verzel.gif";
 
 const Projects = () => {
   const projects = [
@@ -16,12 +16,20 @@ const Projects = () => {
       image: trenchatPreview
     },
     {
+      title: "Agente SDR com IA",
+      description: "Agente SDR automatizado com OpenAI, integrado ao Pipefy e com agenda inteligente para pré-vendas. Desenvolvido como parte do Desafio Elite Dev IA da Verzel.",
+      technologies: ["Java", "Spring Boot", "React", "OpenAI", "Pipefy", "Calendly"],
+      githubUrl: "https://github.com/LiamFer/VerzelEliteDev",
+      demoUrl: "https://webchatliam.netlify.app/",
+      image: verzelPreview
+    },
+    {
       title: "CloudCart",
       description: "API REST robusta e escalável para e-commerce construída com Spring Boot. Inclui autenticação JWT, integração com Stripe para pagamentos e Cloudinary para upload de imagens.",
       technologies: ["Java", "Spring Boot", "JWT", "Stripe", "Cloudinary"],
       githubUrl: "https://github.com/LiamFer/CloudCart",
       demoUrl: "#",
-      image: "https://raw.githubusercontent.com/LiamFer/CloudCart/main/images/architecture.png"
+      image: cloudcartPreview
     },
     {
       title: "Taskflow",
@@ -29,7 +37,7 @@ const Projects = () => {
       technologies: ["React","NestJS","Real-time", "PostgreSQL", "Task Management"],
       githubUrl: "https://github.com/LiamFer/Taskflow",
       demoUrl: "#",
-      image: "https://raw.githubusercontent.com/LiamFer/Taskflow/main/appWorking.gif"
+      image: taskflowPreview
     },
     {
       title: "ENEM Analysis",
